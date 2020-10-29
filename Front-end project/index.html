@@ -1,0 +1,62 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+   <meta charset="utf-8"> 
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="css/style.css"> 
+</head> 
+<body> 
+  <div class="side-form">
+    <div class="toggle-btn">Open form</div>
+    <form id="user-form" novalidate>
+      <div>
+          <input placeholder="Username" name="username">
+        <div class="error-msg user"></div>
+      </div>
+      <div>
+          <input placeholder="Email" name="email">
+        <div class="error-msg mail"></div>
+      </div>
+      <div>
+        <label for="checkbox"  value="true">
+          <input class="checkbox" type="checkbox" name="checkbox">
+          Special offer</input>
+        </label>
+      </div>
+      <div>
+        <label for="">
+          <input type="hidden">
+        </label>
+      </div>
+      <input type="hidden" name="user-id">
+      <button type="button" id="subscribe-btn">Subscribe</button>
+    </form> 
+  </div>
+  <div class="banner"></div>
+  <div id="table">
+    <table id="users-table" >
+      <thead>
+        <th>#</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Special offer</th>
+        <th>Offer cycle</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr style="display: none" class="tr-example">
+          <td class="username"></td>
+          <td class="email"></td>
+          <td class="checkbox"></td>
+          <td class="offercycle"></td>
+          <td>
+            <button class="delete-btn">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="js/main.js"></script> 
+</body> 
+</html> 
