@@ -12,13 +12,13 @@ $(function () {
             userList = [];
         }
 
-        console.log(formData.find((row) => row.name === 'username'))
+        console.log(formData.find((row) => row.name === 'checkbox').value)
 
         const user = {
             username: formData.find((row) => row.name === 'username').value,
             email: formData.find((row) => row.name === 'email').value,
-           // checkbox: formData.find((row) => row.name === 'checkbox').value,
-            //offercycle: formData.find((row) => row.name === 'offercycle').value,
+            checkbox: formData.find((row) => row.name === 'checkbox').value,
+            offercycle: formData.find((row) => row.name === 'offercycle').value,
         };
 
         const userId = formData.find((row) => row.name === 'user-id').value;
@@ -78,6 +78,7 @@ $(function () {
             $('.toggle-btn').toggleClass('visible')
         })
     })
+ 
 
     function renderTable() {
         const $tBody = $('#users-table').find('tbody');
@@ -91,7 +92,8 @@ $(function () {
             
             $newTr.find('.username').text(user.username);
             $newTr.find('.email').text(user.email);
-            $newTr.find('.edit-btn').attr('user-id', index);
+            $newTr.find('.checkbox').text(user.checkbox);
+            $newTr.find('.offercycle').text(user.offercycle);
             $newTr.find('.delete-btn').attr('user-id', index);
             $tBody.append ($newTr);
         }); 
