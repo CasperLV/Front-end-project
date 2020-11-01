@@ -14,9 +14,6 @@ $(function () {
         userList = [];
       }
 
-      console.log(formData.find(function (row) {
-        return row.name === 'checkbox';
-      }).value);
       var user = {
         username: formData.find(function (row) {
           return row.name === 'username';
@@ -38,7 +35,7 @@ $(function () {
       }
 
       localStorage.userList = JSON.stringify(userList);
-      renderTable();
+      $('.overlay').show();
       console.log('can be saved');
     } else {
       console.log('form not valid');
@@ -46,6 +43,15 @@ $(function () {
 
     renderTable();
   });
+  $('.close-btn').click(function () {
+    $('.overlay').hide();
+    clearForm();
+  });
+
+  function clearForm() {
+    var clear = document.getElementById('user-form').reset();
+    renderTable();
+  }
 
   function isFormValid(formData) {
     var isFormValid = true;
@@ -76,6 +82,7 @@ $(function () {
     }
 
     return isFormValid;
+    $('.overlay').show();
   }
 
   $(document).ready(function () {
@@ -84,6 +91,15 @@ $(function () {
       $('.toggle-btn').toggleClass('visible');
     });
   });
+  var elem = document.getElementById('offercycle'),
+      checkBox = document.getElementById('checkbox');
+  checkBox.checked = false;
+
+  checkBox.onchange = function () {
+    elem.style.display = this.checked ? 'block' : 'none';
+  };
+
+  checkBox.onchange();
 
   function renderTable() {
     var _this = this;
@@ -102,8 +118,9 @@ $(function () {
       $newTr.find('.delete-btn').attr('user-id', index);
       $tBody.append($newTr);
     });
-    $('.delete-btn').on('click', function () {
-      var userId = $(_this).attr('user-id');
+    $('table').find('.delete-btn').on('click', function () {
+      var $this = $(_this);
+      var userId = $this.data('index') || $this.closest('td').data('index');
       var userList = JSON.parse(localStorage.userList);
       userList.splice(userId, 1);
       localStorage.userList = JSON.stringify(userList);
